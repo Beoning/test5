@@ -1,6 +1,13 @@
 @use "./variables" as v;
 @use "./mixins" as m;
 
+@mixin confirmedBtn {
+  width: 284px;
+  padding: 16px 19px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
 .banner {
   @include m.bannerSize();
   background-color: v.$main-color;
@@ -86,15 +93,13 @@
 }
 
 .confirm {
-  width: 284px;
-  padding: 16px 19px;
-  margin-top: 20px;
+  @include confirmedBtn();
   background-color: transparent;
   border: 1px solid black;
-  text-transform: uppercase;
+}
 
-  &:hover {
-    background-color: black;
-    color: white;
-  }
+.confirmed {
+  @include confirmedBtn();
+  background-color: black;
+  color: white;
 }
