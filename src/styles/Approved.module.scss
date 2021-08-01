@@ -1,0 +1,23 @@
+@use "./variables" as v;
+@use "./mixins" as m;
+
+.banner {
+  @include m.bannerSize();
+  background-color: v.$main-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+
+  h1 {
+    font-size: 32px;
+    line-height: 37px;
+    text-align: center;
+  }
+
+  p {
+    margin-top: 15px;
+    text-align: center;
+  }
+}

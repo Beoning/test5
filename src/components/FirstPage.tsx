@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../styles/App.module.scss";
+import style from "../styles/FirstPage.module.scss";
 import qr from "../img/qrcode.png";
 import { NavLink } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const Banner = () => {
         </h2>
         <img src={qr} alt="QR код" />
         <span>Сканируйте QR-код или нажмите ОК</span>
-        <NavLink to="/enternumber" className={style.a}>
+        <NavLink to="/secondpage" className={style.a}>
           OK
         </NavLink>
       </div>

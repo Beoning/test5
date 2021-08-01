@@ -1,13 +1,15 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Banner from "./components/Banner";
-import EnterNumber from "./components/EnterNumber";
+import FinalPage from "./components/FinalPage";
+import FirstPage from "./components/FirstPage";
+import SecondPage from "./components/SecondPage";
 
 const App = () => {
   return (
     <Switch>
-      <Route exact path="/" render={() => <Banner />} />
-      <Route path="/enternumber" render={() => <EnterNumber />} />
+      <Route exact path="/" render={() => <FirstPage />} />
+      <Route path="/secondpage" render={() => <SecondPage />} />
+      <Route path="/finalpage" render={() => <FinalPage />} />
     </Switch>
   );
 };

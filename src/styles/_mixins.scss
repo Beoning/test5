@@ -3,6 +3,11 @@
   height: 100vh;
 }
 
+@mixin bannerSize {
+  width: 380px;
+  height: 720px;
+}
+
 @mixin rotation($degree) {
   transform: translateX(-50%) translateY(-50%) rotate($degree);
 }
