@@ -47,9 +47,9 @@ const Phone = () => {
   };
 
   return (
-    <div className={style.banner}>
+    <div className={style.banner} tabIndex={1}>
       <h1>Введите ваш номер мобильного телефона</h1>
-      <span>
+      <span className={number[number.length - 1] ? "" : style.red}>
         +7({n(0)}
         {n(1)}
         {n(2)}){n(3)}
@@ -74,15 +74,21 @@ const Phone = () => {
         ))}
       </div>
       <div className={style.agreement}>
-        <button onClick={() => setCheked(!checked)}>
-          {checked ? (
-            <>
-              <img src={check} alt="" />
-              <img src={check2} alt="" />
-            </>
-          ) : null}
-        </button>
-        <p>Согласие на обработку персональных данных</p>
+        {number[number.length - 1] ? (
+          <>
+            <button onClick={() => setCheked(!checked)}>
+              {checked ? (
+                <>
+                  <img src={check} alt="" />
+                  <img src={check2} alt="" />
+                </>
+              ) : null}
+            </button>
+            <p>Согласие на обработку персональных данных</p>{" "}
+          </>
+        ) : (
+          <p className={style.red}>ВВЕДИТЕ НОМЕР</p>
+        )}
       </div>
       <button
         className={
