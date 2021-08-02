@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, { KeyboardEvent, useState } from "react";
 import style from "../styles/Phone.module.scss";
 import check from "../img/check.svg";
 import check2 from "../img/check2.svg";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  insert,
-  selectkeys,
-  selectPhoneNumber,
-} from "../redux/reducers/keyboard-reducer";
+import { insert, selectPhoneNumber } from "../redux/reducers/keyboard-reducer";
+
+const keys = [
+  { value: "1", key: "1" },
+  { value: "2", key: "2" },
+  { value: "3", key: "3" },
+  { value: "4", key: "4" },
+  { value: "5", key: "5" },
+  { value: "6", key: "6" },
+  { value: "7", key: "7" },
+  { value: "8", key: "8" },
+  { value: "9", key: "9" },
+  { value: "Стереть", key: "Backspace" },
+  { value: "0", key: "0" },
+];
 
 const Phone = () => {
   const dispatch = useDispatch();
-  const keys = useSelector(selectkeys);
   const number = useSelector(selectPhoneNumber);
   const [checked, setCheked] = useState(false);
 
@@ -23,6 +32,12 @@ const Phone = () => {
     return "_";
   };
 
+  const onKeyDownHandle = (e: KeyboardEvent) => {
+    if (Number(e.key) || e.key === "Backspace") {
+      dispatch(insert(e.key));
+    }
+  };
+
   const history = useHistory();
 
   const handleClick = () => {
@@ -30,6 +45,7 @@ const Phone = () => {
       history.push("/finalpage");
     }
   };
+
   return (
     <div className={style.banner}>
       <h1>Введите ваш номер мобильного телефона</h1>
@@ -44,15 +60,16 @@ const Phone = () => {
       </span>
       <p>и с Вами свяжется наш менеждер для дальнейшей консультации</p>
       <div className={style.keyboard}>
-        {keys.map((key) => (
+        {keys.map((item) => (
           <button
-            key={key}
-            value={key}
+            key={item.value}
+            value={item.value}
+            onKeyDown={onKeyDownHandle}
             onClick={(e) =>
               dispatch(insert((e.target as HTMLButtonElement).value))
             }
           >
-            {key}
+            {item.value}
           </button>
         ))}
       </div>

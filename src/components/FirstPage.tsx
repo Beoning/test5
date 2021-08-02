@@ -19,8 +19,6 @@ const Banner = () => {
         muted
         loop
         className={style.video}
-        width="1280px"
-        height="720px"
         onPlay={() => setStarted(true)}
       >
         <source src={video} type="video/mp4" />

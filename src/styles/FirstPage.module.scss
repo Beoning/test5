@@ -1,6 +1,19 @@
 @use "./variables" as v;
 @use "./mixins" as m;
 
+@mixin bannerStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 251px;
+  height: 357px;
+  background-color: v.$main-color;
+  position: absolute;
+  right: 0;
+  top: 220px;
+  padding: 20px 10px 10px;
+}
+
 .container {
   @include m.containerSize();
   background: url("../img/video.png"), no-repeat;
@@ -8,6 +21,7 @@
 }
 
 .video {
+  @include m.containerSize();
   position: absolute;
   top: 0;
   left: 0;
@@ -15,30 +29,12 @@
 }
 
 .banner2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 251px;
-  height: 357px;
-  background-color: v.$main-color;
-  position: absolute;
-  right: 0;
-  top: 220px;
-  padding: 20px 10px 10px;
+  @include bannerStyle();
   visibility: hidden;
 }
 
 .banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 251px;
-  height: 357px;
-  background-color: v.$main-color;
-  position: absolute;
-  right: 0;
-  top: 220px;
-  padding: 20px 10px 10px;
+  @include bannerStyle();
 
   h2 {
     font-size: 15.2px;

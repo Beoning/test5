@@ -16,12 +16,10 @@ type InitialState = {
     PhoneKey,
     PhoneKey
   ];
-  keys: string[];
 };
 
 const initialState: InitialState = {
   phoneNumber: [null, null, null, null, null, null, null, null, null, null],
-  keys: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Стереть", "0"],
 };
 
 const keyboardSlice = createSlice({
@@ -29,7 +27,7 @@ const keyboardSlice = createSlice({
   initialState,
   reducers: {
     insert: (state, action: PayloadAction<string>) => {
-      if (action.payload === "Стереть") {
+      if (action.payload === "Стереть" || action.payload === "Backspace") {
         let lastindex = state.phoneNumber.findIndex((el) => el === null);
         if (lastindex === -1) {
           state.phoneNumber[state.phoneNumber.length - 1] = null;
@@ -45,7 +43,6 @@ const keyboardSlice = createSlice({
 
 export const { insert } = keyboardSlice.actions;
 
-export const selectkeys = (state: RootState) => state.keyboard.keys;
 export const selectPhoneNumber = (state: RootState) =>
   state.keyboard.phoneNumber;
 
