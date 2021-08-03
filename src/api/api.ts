@@ -1,16 +1,14 @@
 import Axios from "axios";
 
 const instance = Axios.create({
-  baseURL: `http://apilayer.net/api/`,
+  baseURL: `https://api.veriphone.io/v2/`,
   withCredentials: false,
 });
 
 export const validateApi = {
   async validate(number: string) {
     return await instance
-      .get(
-        `validate?access_key=a06eac25b3bbb9dda6619ed7a26fa81e&number=${number}`
-      )
+      .get(`verify?phone=%2B7-${number}&key=90E216DCBD5044F9972EF6ACB12BEC76`)
       .then((response) => response.data);
   },
 };

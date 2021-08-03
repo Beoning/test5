@@ -29,6 +29,7 @@ export const checkValidation = createAsyncThunk(
   "keyboard/validation",
   async (number: string) => {
     const response = await validateApi.validate(number);
+    console.log(response);
     return response;
   }
 );
@@ -53,7 +54,7 @@ const keyboardSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(checkValidation.fulfilled, (state, action) => {
-      state.valid = action.payload.valid;
+      state.valid = action.payload.phone_valid;
     });
   },
 });

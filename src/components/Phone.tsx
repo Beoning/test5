@@ -46,7 +46,7 @@ const Phone = () => {
 
   const handleClick = () => {
     if (checked && number[number.length - 1] !== null) {
-      let phonenumber = "7" + number.join("");
+      let phonenumber = number.join("");
       dispatch(checkValidation(phonenumber));
     }
   };
