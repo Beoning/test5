@@ -2,9 +2,14 @@ import React, { KeyboardEvent, useState } from "react";
 import style from "../styles/Phone.module.scss";
 import check from "../img/check.svg";
 import check2 from "../img/check2.svg";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { insert, selectPhoneNumber } from "../redux/reducers/keyboard-reducer";
+import {
+  checkValidation,
+  insert,
+  selectPhoneNumber,
+  selectValid,
+} from "../redux/reducers/keyboard-reducer";
 
 const keys = [
   { value: "1", key: "1" },
@@ -23,6 +28,7 @@ const keys = [
 const Phone = () => {
   const dispatch = useDispatch();
   const number = useSelector(selectPhoneNumber);
+  const valid = useSelector(selectValid);
   const [checked, setCheked] = useState(false);
 
   const n = (i: number) => {
@@ -38,18 +44,17 @@ const Phone = () => {
     }
   };
 
-  const history = useHistory();
-
   const handleClick = () => {
     if (checked && number[number.length - 1] !== null) {
-      history.push("/finalpage");
+      let phonenumber = "7" + number.join("");
+      dispatch(checkValidation(phonenumber));
     }
   };
 
   return (
     <div className={style.banner}>
       <h1>Введите ваш номер мобильного телефона</h1>
-      <span className={number[number.length - 1] ? "" : style.red}>
+      <span className={valid === null || valid ? "" : style.red}>
         +7({n(0)}
         {n(1)}
         {n(2)}){n(3)}
@@ -74,7 +79,9 @@ const Phone = () => {
         ))}
       </div>
       <div className={style.agreement}>
-        {number[number.length - 1] ? (
+        {valid === false && number[9] !== null ? (
+          <p className={style.red}>НОМЕР ВВЕДЕН НЕВЕРНО</p>
+        ) : (
           <>
             <button onClick={() => setCheked(!checked)}>
               {checked ? (
@@ -86,8 +93,6 @@ const Phone = () => {
             </button>
             <p>Согласие на обработку персональных данных</p>{" "}
           </>
-        ) : (
-          <p className={style.red}>ВВЕДИТЕ НОМЕР</p>
         )}
       </div>
       <button
@@ -100,6 +105,7 @@ const Phone = () => {
       >
         Подтвердить номер
       </button>
+      {valid ? <Redirect to="/finalpage" /> : null}
     </div>
   );
 };
