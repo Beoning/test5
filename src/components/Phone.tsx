@@ -47,7 +47,7 @@ const Phone = () => {
   };
 
   return (
-    <div className={style.banner} tabIndex={1}>
+    <div className={style.banner}>
       <h1>Введите ваш номер мобильного телефона</h1>
       <span className={number[number.length - 1] ? "" : style.red}>
         +7({n(0)}

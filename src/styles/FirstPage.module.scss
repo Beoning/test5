@@ -69,3 +69,15 @@
     text-decoration: none;
   }
 }
+
+@media (device-aspect-ratio: 16/9) {
+  .banner {
+    top: 20%;
+  }
+}
+
+@media (device-aspect-ratio: 16/9) and (min-width: 1600px) {
+  .banner {
+    top: 40%;
+  }
+}
