@@ -79,7 +79,7 @@ const Phone = () => {
         ))}
       </div>
       <div className={style.agreement}>
-        {valid === false && number[9] !== null ? (
+        {valid === false && number[number.length - 1] !== null ? (
           <p className={style.red}>НОМЕР ВВЕДЕН НЕВЕРНО</p>
         ) : (
           <>
@@ -91,7 +91,7 @@ const Phone = () => {
                 </>
               ) : null}
             </button>
-            <p>Согласие на обработку персональных данных</p>{" "}
+            <p>Согласие на обработку персональных данных</p>
           </>
         )}
       </div>
